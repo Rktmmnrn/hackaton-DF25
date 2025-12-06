@@ -20,11 +20,11 @@ const SearchBar = ({
                             </span>
                             <Form.Control
                                 type="text"
-                                placeholder="Recherchez un métier (ex: chauffeur, mécanicien, coordinateur...)"
+                                placeholder="Recherchez un métier (ex: chauffeur, mécanicien ...)"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                                className="border-start-0"
+                                className="border-start-0 custom-placeholder-size"
                             />
                             <Button
                                 style={{backgroundColor: '#2a80a8ff'}}

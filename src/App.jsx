@@ -111,7 +111,7 @@ function App() {
     if (dateStr.includes('jour')) return dateStr;
     return `Publié: ${dateStr}`;
   };
-  
+
   // Recharger la page
   const reloadPage = () => window.location.reload();
 
@@ -151,7 +151,7 @@ function App() {
               />
 
               {!loading && offresReelles.length === 0 && !error && (
-                <EmptyState 
+                <EmptyState
                   setSearchQuery={setSearchQuery}
                   handleSearch={handleSearch}
                 />
