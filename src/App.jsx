@@ -8,7 +8,7 @@ import SearchBar from './components/SearchBar';
 import LoadingError from './components/LoadingError';
 import StatisticsSection from './components/StatisticsSection';
 import JobOffersSection from './components/JobOffersSection';
-import JobAnalysisSection from './components/JobAnalysisSection';
+// import JobAnalysisSection from './components/JobAnalysisSection';
 import DemoModal from './components/DemoModal';
 import Footer from './components/Footer';
 import EmptyState from './components/EmptyState';
@@ -102,7 +102,7 @@ function App() {
   // Obtenir le texte du risque
   const getRiskText = (score) => {
     if (score >= 7) return 'Élevé';
-    if (score >= 4) return 'Moyen';
+    if (score >= 4 || score < 7) return 'Moyen';
     return 'Faible';
   };
 
@@ -150,13 +150,13 @@ function App() {
                 setShowAllOffers={setShowAllOffers}
               />
 
-              <JobAnalysisSection
+              {/* <JobAnalysisSection
                 selectedOffer={selectedOffer}
                 getRiskColor={getRiskColor}
                 getRiskText={getRiskText}
                 recommendations={recommendations}
                 loadRecommendations={loadRecommendations}
-              />
+              /> */}
 
               {!loading && offresReelles.length === 0 && !error && (
                 <EmptyState 

@@ -18,7 +18,7 @@ const StatisticsSection = ({ statistiques }) => {
                 <Card className="border-0 bg-primary bg-opacity-10 h-100">
                   <Card.Body className="py-4">
                     <div className="display-5 fw-bold text-primary">
-                      {statistiques.total_offers || 50}
+                      {statistiques.total_offers || 100}
                     </div>
                     <div className="text-muted">Offres analysées</div>
                   </Card.Body>
@@ -51,7 +51,7 @@ const StatisticsSection = ({ statistiques }) => {
                 <Card className="border-0 bg-success bg-opacity-10 h-100">
                   <Card.Body className="py-4">
                     <div className="display-5 fw-bold text-success">
-                      {statistiques.risk_distribution?.Faible || 9}
+                      {statistiques.risk_distribution?.Faible || 7}
                     </div>
                     <div className="text-muted">Risques faibles</div>
                   </Card.Body>
