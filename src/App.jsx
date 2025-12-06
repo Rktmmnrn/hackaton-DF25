@@ -42,8 +42,8 @@ function App() {
         // 3. Charger les statistiques
         const statsData = await apiService.getStatistics();
         setStatistiques(statsData);
-        console.log('Statistique 1 :',statsData.average_risk_score);
-        console.log('Statistique 2 :',typeof(statsData.risk_stats));
+        // console.log('Statistique 1 :',statsData.average_risk_score);
+        // console.log('Statistique 2 :',typeof(statsData.risk_stats));
 
         // 4. Charger l'exemple démo
         const demoData = await apiService.getDemo();
@@ -149,14 +149,6 @@ function App() {
                 showAllOffers={showAllOffers}
                 setShowAllOffers={setShowAllOffers}
               />
-
-              {/* <JobAnalysisSection
-                selectedOffer={selectedOffer}
-                getRiskColor={getRiskColor}
-                getRiskText={getRiskText}
-                recommendations={recommendations}
-                loadRecommendations={loadRecommendations}
-              /> */}
 
               {!loading && offresReelles.length === 0 && !error && (
                 <EmptyState 
