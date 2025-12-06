@@ -42,7 +42,8 @@ function App() {
         // 3. Charger les statistiques
         const statsData = await apiService.getStatistics();
         setStatistiques(statsData);
-        console.log('Statistique :',statsData.high_risk_jobs);
+        console.log('Statistique 1 :',statsData.average_risk_score);
+        console.log('Statistique 2 :',typeof(statsData.risk_stats));
 
         // 4. Charger l'exemple démo
         const demoData = await apiService.getDemo();
@@ -137,7 +138,7 @@ function App() {
           {!loading && !error && (
             <>
               <StatisticsSection statistiques={statistiques} />
-              
+
               <JobOffersSection
                 offresReelles={offresReelles}
                 selectedOffer={selectedOffer}
