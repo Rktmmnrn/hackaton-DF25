@@ -1,7 +1,7 @@
 // src/services/api.js - Version axios
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = '';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -37,6 +37,24 @@ const apiService = {
     async getDemo() {
         const response = await api.get('/api/demo');
         return response.data;
+    },
+
+    async getJobsByRiskLevel(level = 'all') {
+        const response = await api.get(`/api/jobs-by-risk?level=${level}`);
+        return response.data;
+    },
+
+    // Méthodes utilitaires pour les niveaux spécifiques
+    async getHighRiskJobs() {
+        return this.getJobsByRiskLevel('high');
+    },
+
+    async getMediumRiskJobs() {
+        return this.getJobsByRiskLevel('medium');
+    },
+
+    async getLowRiskJobs() {
+        return this.getJobsByRiskLevel('low');
     }
 };
 
