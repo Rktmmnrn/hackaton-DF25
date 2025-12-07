@@ -30,7 +30,7 @@ const JobOffersSection = ({
                         <Card.Body className="p-4">
                             <div className="d-flex justify-content-between align-items-center mb-4">
                                 <h3 className="mb-0">
-                                    📋 Offres d'emploi réelles (Asako.mg)
+                                    📋 Offres d'emploi réelles
                                     <Badge bg="secondary" className="ms-2">
                                         {offresReelles.length} offres
                                     </Badge>

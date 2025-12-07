@@ -15,3 +15,57 @@ body {
   font-size: 1rem;
   color: rgb(156, 152, 152)
 }
+
+.transition-smooth {
+    transition: all 0.3s ease-in-out;
+}
+
+/* 1. Styles de base du header (avant réduction) */
+.header-expanded {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    /* Vous pouvez définir une hauteur initiale pour la transition si nécessaire */
+}
+
+/* 2. Styles du header réduit (après défilement) */
+.header-shrunk {
+    /* Réduit l'espace vertical */
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    /* Vous pouvez également réduire le box-shadow si vous le souhaitez */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Dans src/App.css */
+.dashboard-sidebar {
+  min-height: calc(100vh - 76px);
+  position: sticky;
+  top: 76px;
+}
+
+/* Animation pour les liens de navigation */
+.nav-link {
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  transform: translateX(5px);
+}
+
+/* Style pour la page active */
+.nav-link.active {
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .dashboard-sidebar {
+    position: static;
+    min-height: auto;
+  }
+  
+  .dashboard-content {
+    padding-left: 0 !important;
+    padding-top: 20px;
+  }
+}

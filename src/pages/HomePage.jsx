@@ -33,6 +33,7 @@ function HomePage() {
 
         const offersData = await apiService.getAllOffers();
         setOffresReelles(offersData.offers || []);
+        console.log("iciii", offersData);
 
         const statsData = await apiService.getStatistics();
         setStatistiques(statsData);
@@ -120,7 +121,7 @@ function HomePage() {
             <>
               {/* Statistiques légères */}
               <StatisticsCards statistiques={statistiques} />
-              
+
               {/* Offres d'emploi */}
               <JobOffersSection
                 offresReelles={offresReelles}
