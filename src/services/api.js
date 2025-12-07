@@ -29,9 +29,30 @@ const apiService = {
         return response.data;
     },
 
-    async getRecommendations(job) {
-        const response = await api.get(`/api/recommendations/${job}`);
-        return response.data;
+    getRecommendations: async (job) => {
+        try {
+            const response = await api.get(`/api/recommendations/${job}`);
+
+            // Normaliser les données
+            const data = response.data;
+
+            // S'assurer que recommendations est un array
+            if (data && !Array.isArray(data.recommendations)) {
+                data.recommendations = [];
+            }
+
+            return data;
+        } catch (error) {
+            console.error(`Erreur récupération recommandations pour ${job}:`, error);
+
+            // Retourner un objet structuré même en cas d'erreur
+            return {
+                current_job: job,
+                current_avg_risk: "0",
+                total_current_offers: 0,
+                recommendations: []
+            };
+        }
     },
 
     async getDemo() {

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Button, Badge, Modal } from 'react-bootstrap';
+import { Row, Col, Card, Button, Badge, Modal, Alert } from 'react-bootstrap';
+import { apiService } from '../services/api';
+import RecommendationsModal from './RecommendationsModal';
 
 const JobOffersSection = ({
     offresReelles,
@@ -13,11 +15,40 @@ const JobOffersSection = ({
 }) => {
     const [showAnalysisModal, setShowAnalysisModal] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
+    const [recommendations, setRecommendations] = useState([]);
+    const [loadingRecos, setLoadingRecos] = useState(false);
+    const [showRecoModal, setShowRecoModal] = useState(false);
+    const [currentRecommendations, setCurrentRecommendations] = useState([]);
+    const [selectedForReco, setSelectedForReco] = useState(null);
 
     const handleAnalyzeClick = (offre) => {
         setSelectedJob(offre);
         handleSelectOffer(offre);
         setShowAnalysisModal(true);
+
+        // Charger les recommandations
+        const metier = offre.metier || offre.title.split(' ')[0];
+        loadRecommendations(metier);
+    };
+
+    const showRecommendationsModal = (recos) => {
+        setCurrentRecommendations(recos);
+        setShowRecoModal(true);
+    };
+
+    const loadRecommendations = async (metier) => {
+        if (!metier) return;
+
+        setLoadingRecos(true);
+        try {
+            const recos = await apiService.getRecommendations(metier.toLowerCase());
+            setRecommendations(recos.recommendations || []);
+        } catch (error) {
+            console.error('Erreur chargement recommandations:', error);
+            setRecommendations([]);
+        } finally {
+            setLoadingRecos(false);
+        }
     };
 
     if (offresReelles.length === 0) return null;
@@ -266,10 +297,10 @@ const JobOffersSection = ({
                                 </Button>
                                 <Button
                                     variant="outline-primary"
-                                    className="flex-fill"
+                                    className="w-100"
                                     onClick={() => {
-                                        // Tu peux ajouter ici la logique pour les recommandations
-                                        alert("Fonctionnalité recommandations à implémenter");
+                                        setSelectedForReco(selectedJob);
+                                        setShowRecoModal(true);
                                     }}
                                 >
                                     🔄 Voir des alternatives
@@ -284,6 +315,11 @@ const JobOffersSection = ({
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <RecommendationsModal
+                show={showRecoModal}
+                onHide={() => setShowRecoModal(false)}
+                jobOffer={selectedForReco}
+            />
         </>
     );
 };
