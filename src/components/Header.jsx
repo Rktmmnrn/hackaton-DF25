@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Header = ({ apiHealth }) => {
     return (
@@ -18,15 +19,20 @@ const Header = ({ apiHealth }) => {
                             </div>
                         </div>
                     </Col>
-                    {/* <Col md={4} className="text-md-end">
-            {apiHealth && (
-              <div className="bg-white rounded-3 p-3 d-inline-block">
-                <div className="text-muted small">
-                  ✅ {apiHealth.offers_count} offres analysées
-                </div>
-              </div>
-            )}
-          </Col> */}
+                    <Col md={4} className="text-md-end">
+                        {apiHealth && (
+                            <div className="bg-white rounded-3 p-3 d-inline-block">
+                                <div className="text-muted small">
+                                    ✅ {apiHealth.offers_count} offres analysées
+                                </div>
+                                <Nav className="mt-2">
+                                    <Nav.Link as={Link} to="/" className="text-primary p-0 small">Accueil</Nav.Link>
+                                    <span className="mx-2 text-muted">•</span>
+                                    <Nav.Link as={Link} to="/dashboard" className="text-primary p-0 small">Dashboard</Nav.Link>
+                                </Nav>
+                            </div>
+                        )}
+                    </Col>
                 </Row>
             </Container>
         </header>

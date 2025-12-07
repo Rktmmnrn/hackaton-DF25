@@ -44,6 +44,44 @@ const apiService = {
         return response.data;
     },
 
+    async getJobsByRiskDetailed() {
+        try {
+            const response = await api.get('/api/jobs-by-risk-detailed');
+            return response.data;
+        } catch (error) {
+            console.error('Erreur récupération jobs par risque:', error);
+            throw error;
+        }
+    },
+
+    /**
+  * Récupère tous les secteurs
+  * GET /api/sectors
+  */
+    async getSectors() {
+        try {
+            const response = await api.get('/api/sectors');
+            return response.data;
+        } catch (error) {
+            console.error('Erreur récupération secteurs:', error);
+            throw error;
+        }
+    },
+
+    /**
+   * Récupère toutes les localisations
+   * GET /api/locations
+   */
+    async getLocations() {
+        try {
+            const response = await api.get('/api/locations');
+            return response.data;
+        } catch (error) {
+            console.error('Erreur récupération localisations:', error);
+            throw error;
+        }
+    },
+
     // Méthodes utilitaires pour les niveaux spécifiques
     async getHighRiskJobs() {
         return this.getJobsByRiskLevel('high');
